@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"setokoapp/domain/model"
+	"setokoapp/infrastructure/persistence"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -26,6 +27,12 @@ func main() {
 	})
 
 	app.Use(cors.New(cors.ConfigDefault)) //using default cors config to fiber app
+
+	db, err := persistence.ConnectDb()
+	if err != nil {
+		log.Printf("Error when try connect to db: %v", err)
+		return
+	}
 
 	setoko := app.Group("setoko-app")
 	setoko.Get("healthcheck", func(ctx *fiber.Ctx) error { //to check if api is available

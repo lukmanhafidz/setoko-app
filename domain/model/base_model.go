@@ -8,7 +8,15 @@ import (
 )
 
 var Config = struct {
-	Port int `env:"port"`
+	Port     int `env:"port"`
+	Postgres struct {
+		Host     string `env:"host"`
+		User     string `env:"user"`
+		Password string `env:"password"`
+		Name     string `env:"name"`
+		Port     string `env:"port"`
+		SslMode  string `env:"sslMode"`
+	} `env:"postgres"`
 }{}
 
 type BaseResp struct {
