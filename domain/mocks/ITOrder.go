@@ -13,36 +13,6 @@ type ITOrder struct {
 	mock.Mock
 }
 
-// FindOrderDetail provides a mock function with given fields: orderId
-func (_m *ITOrder) FindOrderDetail(orderId string) ([]model.OrderDetail, error) {
-	ret := _m.Called(orderId)
-
-	if len(ret) == 0 {
-		panic("no return value specified for FindOrderDetail")
-	}
-
-	var r0 []model.OrderDetail
-	var r1 error
-	if rf, ok := ret.Get(0).(func(string) ([]model.OrderDetail, error)); ok {
-		return rf(orderId)
-	}
-	if rf, ok := ret.Get(0).(func(string) []model.OrderDetail); ok {
-		r0 = rf(orderId)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]model.OrderDetail)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(string) error); ok {
-		r1 = rf(orderId)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // FindOrderReceipt provides a mock function with given fields: orderId
 func (_m *ITOrder) FindOrderReceipt(orderId string) (model.OrderReceipt, error) {
 	ret := _m.Called(orderId)

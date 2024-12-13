@@ -47,7 +47,7 @@ func TestGenerateUsecase(t *testing.T) {
 func (gt *generateUsecaseTestRepo) TestGenerate(t *testing.T) bool {
 	orderId := utils.GenerateNewUUID()
 
-	mockOrderDetail := []model.OrderDetail{ //mocking models
+	mockOrderDetail := []model.ProductOrder{ //mocking models
 		{
 			ProductName:  "kecap",
 			Qty:          2,

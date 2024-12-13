@@ -3,24 +3,24 @@ package model
 import "time"
 
 type OrderReceipt struct {
-	MerchantName     string
-	MerchantLink     string
-	MerchantPhone    string
-	TotalPayment     int
-	PaymentMethod    int //1=tunai 2=transfer 3=qris
-	PaymentStatus    int //0=pending 1=sukses 2=gagal
-	OrderNo          string
-	OrderAt          time.Time
-	DeliveryMethod   int //1.makan di tempat 2.ambil sendiri 3.diantar kurir
-	DeliveryDetail   string
-	SubtotalDelivery int
-	SubtotalProduct  int
-	OrderDetail      []OrderDetail `gorm:"-"`
+	MerchantName     string         `json:"merchantName"`
+	MerchantLink     string         `json:"merchantLink"`
+	MerchantPhone    string         `json:"merchantPhone"`
+	TotalPayment     int            `json:"totalPayment"`
+	PaymentMethod    int            `json:"paymentMethod"` //1=tunai 2=transfer 3=qris
+	PaymentStatus    int            `json:"paymentStatus"` //0=pending 1=sukses 2=gagal
+	OrderNo          string         `json:"orderNo"`
+	OrderAt          time.Time      `json:"orderAt"`
+	DeliveryMethod   int            `json:"deliveryMethod"` //1.makan di tempat 2.ambil sendiri 3.diantar kurir
+	DeliveryDetail   string         `json:"deliveryDetail"`
+	SubtotalDelivery int            `json:"subtotalDelivery"`
+	SubtotalProduct  int            `json:"subtotalProduct"`
+	OrderDetail      []ProductOrder `json:"orderDetail" gorm:"-"`
 }
 
-type OrderDetail struct {
-	ProductName  string
-	Qty          int
-	ProductPrice int
-	TotalPrice   int
+type ProductOrder struct {
+	ProductName  string `json:"productName"`
+	ProductPrice int    `json:"productPrice"`
+	Qty          int    `json:"qty"`
+	TotalPrice   int    `json:"totalPrice"`
 }
