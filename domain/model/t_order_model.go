@@ -14,6 +14,7 @@ type TOrder struct {
 	OrderNo        string
 	OrderAt        time.Time
 	DeliveryMethod int //1.makan di tempat 2.ambil sendiri 3.diantar kurir
+	DeliveryTotal  int
 }
 
 func (TOrder) TableName() string {

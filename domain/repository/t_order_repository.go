@@ -3,5 +3,6 @@ package repository
 import "setokoapp/domain/model"
 
 type ITOrder interface {
-	FindOrderDetails(orderId string) (model.OrderReceipt, error)
+	FindOrderReceipt(orderId string) (model.OrderReceipt, error)
+	FindOrderDetail(orderId string) ([]model.OrderDetail, error)
 }

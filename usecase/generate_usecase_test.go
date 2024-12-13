@@ -74,14 +74,17 @@ func (gt *generateUsecaseTestRepo) TestGenerate(t *testing.T) bool {
 		DeliveryMethod:   2,
 		DeliveryDetail:   "toko berkah | 08123456789",
 		SubtotalDelivery: 10000,
-		SubtotalProduct:  35000,
-		OrderDetail:      mockOrderDetail,
 	}
 
-	t.Run("Success Generate Receipt", func(t *testing.T) {
-		gt.tOrderRepository.On("FindOrderDetails", orderId).Return(mockOrderReceipt, nil).Once()
+	mockResponseData := mockOrderReceipt
+	mockResponseData.OrderDetail = mockOrderDetail
+	mockResponseData.SubtotalProduct = 35000
 
-		expectResp := new(model.BaseResp).OK(mockOrderReceipt)
+	t.Run("Success Generate Receipt", func(t *testing.T) {
+		gt.tOrderRepository.On("FindOrderReceipt", orderId).Return(mockOrderReceipt, nil).Once()
+		gt.tOrderRepository.On("FindOrderDetails", orderId).Return(mockOrderDetail, nil).Once()
+
+		expectResp := new(model.BaseResp).OK(mockResponseData)
 		resp := usecase.GenerateReceipt(orderId.String())
 		if assert.NotEqual(t, expectResp, resp) {
 			result = false
