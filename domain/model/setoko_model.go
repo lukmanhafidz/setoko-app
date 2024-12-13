@@ -3,6 +3,7 @@ package model
 import "time"
 
 type OrderReceipt struct {
+	ProductId        string         `json:"-"`
 	MerchantName     string         `json:"merchantName"`
 	MerchantLink     string         `json:"merchantLink"`
 	MerchantPhone    string         `json:"merchantPhone"`

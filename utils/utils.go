@@ -2,9 +2,7 @@ package utils
 
 import (
 	"crypto/rand"
-	"errors"
 	"fmt"
-	"reflect"
 	"setokoapp/constants"
 	"time"
 
@@ -25,36 +23,6 @@ func GenerateNewUUID() uuid.UUID {
 	}
 
 	return uuid.New()
-}
-
-func ValidateRequestData(request interface{}) error {
-	dataStruct := reflect.TypeOf(request)
-	dataValue := reflect.ValueOf(request)
-
-	for i := 0; i < dataStruct.NumField(); i++ {
-		field := dataStruct.Field(i)
-		fieldValue := dataValue.Field(i)
-
-		if field.Tag.Get("validate") == "required" {
-			if err := validateFieldValue(fieldValue, field); err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
-}
-
-func validateFieldValue(fieldValue reflect.Value, field reflect.StructField) error {
-	if fieldValue.IsValid() {
-		if fieldValue.IsZero() {
-			return errors.New(fmt.Sprintf("%v is Mandatory", field.Name))
-		}
-	} else {
-		return errors.New(fmt.Sprintf("%v is Mandatory", field.Name))
-	}
-
-	return nil
 }
 
 func GenTransactionId() string {

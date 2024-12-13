@@ -14,22 +14,24 @@ type ITOrder struct {
 }
 
 // FindOrderReceipt provides a mock function with given fields: orderId
-func (_m *ITOrder) FindOrderReceipt(orderId string) (model.OrderReceipt, error) {
+func (_m *ITOrder) FindOrderReceipt(orderId string) (*model.OrderReceipt, error) {
 	ret := _m.Called(orderId)
 
 	if len(ret) == 0 {
 		panic("no return value specified for FindOrderReceipt")
 	}
 
-	var r0 model.OrderReceipt
+	var r0 *model.OrderReceipt
 	var r1 error
-	if rf, ok := ret.Get(0).(func(string) (model.OrderReceipt, error)); ok {
+	if rf, ok := ret.Get(0).(func(string) (*model.OrderReceipt, error)); ok {
 		return rf(orderId)
 	}
-	if rf, ok := ret.Get(0).(func(string) model.OrderReceipt); ok {
+	if rf, ok := ret.Get(0).(func(string) *model.OrderReceipt); ok {
 		r0 = rf(orderId)
 	} else {
-		r0 = ret.Get(0).(model.OrderReceipt)
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*model.OrderReceipt)
+		}
 	}
 
 	if rf, ok := ret.Get(1).(func(string) error); ok {
