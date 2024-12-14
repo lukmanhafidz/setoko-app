@@ -15,8 +15,8 @@ import (
 
 func ConnectDb() (*gorm.DB, error) {
 	config := model.Config.Postgres
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Jakarta",
-		config.Host, config.User, config.Password, config.Name, config.Port, config.SslMode) //get value from config file
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s TimeZone=Asia/Jakarta",
+		config.Host, config.User, config.Password, config.Name, config.Port) //get value from config file
 
 	gormCfg := new(gorm.Config)
 

@@ -59,3 +59,29 @@ func GenerateRandomBytes(n int) ([]byte, error) {
 
 	return b, nil
 }
+
+func GetDeliveryMethod(method int) string {
+	switch method {
+	case constants.DELIVERY_METHOD_DINE_IN:
+		return "Makan di tempat"
+	case constants.DELIVERY_METHOD_PICKUP:
+		return "Ambil sendiri"
+	case constants.DELIVERY_METHOD_COURIER:
+		return "Diantar kurir"
+	}
+
+	return ""
+}
+
+func GetPaymentMethod(method int) string {
+	switch method {
+	case constants.PAYMENT_METHOD_TUNAI:
+		return "Makan di tempat"
+	case constants.PAYMENT_METHOD_TRANSFER:
+		return "Ambil sendiri"
+	case constants.PAYMENT_METHOD_QRIS:
+		return "Diantar kurir"
+	}
+
+	return ""
+}

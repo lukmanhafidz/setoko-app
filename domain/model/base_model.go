@@ -15,7 +15,6 @@ var Config = struct {
 		Password string `env:"password"`
 		Name     string `env:"name"`
 		Port     string `env:"port"`
-		SslMode  string `env:"sslMode"`
 	} `env:"postgres"`
 }{}
 
@@ -30,6 +29,14 @@ func (br *BaseResp) OK(data interface{}) BaseResp {
 		ResponseCode: constants.RC_SUCCESS,
 		ResponseDesc: constants.RD_SUCCESS,
 		Data:         data,
+	}
+}
+
+func (br *BaseResp) Error(responseCode, responseDesc string) BaseResp {
+	return BaseResp{
+		ResponseCode: responseCode,
+		ResponseDesc: responseDesc,
+		Data:         nil,
 	}
 }
 
