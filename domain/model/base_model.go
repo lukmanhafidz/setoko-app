@@ -8,7 +8,14 @@ import (
 )
 
 var Config = struct {
-	Port int `env:"port"`
+	Port     int `env:"port"`
+	Postgres struct {
+		Host     string `env:"host"`
+		User     string `env:"user"`
+		Password string `env:"password"`
+		Name     string `env:"name"`
+		Port     string `env:"port"`
+	} `env:"postgres"`
 }{}
 
 type BaseResp struct {
@@ -22,6 +29,14 @@ func (br *BaseResp) OK(data interface{}) BaseResp {
 		ResponseCode: constants.RC_SUCCESS,
 		ResponseDesc: constants.RD_SUCCESS,
 		Data:         data,
+	}
+}
+
+func (br *BaseResp) Error(responseCode, responseDesc string) BaseResp {
+	return BaseResp{
+		ResponseCode: responseCode,
+		ResponseDesc: responseDesc,
+		Data:         nil,
 	}
 }
 
