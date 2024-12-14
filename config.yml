@@ -1,8 +1,7 @@
-port: 8080
+port: 5000
 postgres:
   host: localhost
   user: postgres
-  password:
-  name: postgres
+  password: setoko
+  name: setoko
   port: 5432
-  sslMode: disable
